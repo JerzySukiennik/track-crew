@@ -1,0 +1,227 @@
+/* Track Crew — Sticker Arcade design tokens and shared sticker primitives. */
+
+:root{
+  --ink:#111111;
+  --yellow:#FFD400;
+  --coral:#FF5747;
+  --cyan:#21D0DE;
+  --cream:#FFF6E9;
+  --green:#7CD628;
+  --page:#2B2B30;
+  --page-2:#232327;
+  --white:#FFFFFF;
+  --muted:#CFCBC3;
+  --ink-a35:rgba(17,17,17,.35);
+  --ink-a50:rgba(17,17,17,.5);
+
+  --bd:4px;
+  --bd-sm:3px;
+  --bd-lg:5px;
+  --r:12px;
+  --r-sm:6px;
+  --r-lg:16px;
+  --sh:8px 8px 0 var(--ink);
+  --sh-sm:4px 4px 0 var(--ink);
+  --sh-lg:14px 14px 0 var(--ink);
+
+  --display:"Bungee","Arial Black","Helvetica Neue",sans-serif;
+  --body:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --data:"Space Mono","SFMono-Regular",Menlo,monospace;
+
+  --grid-line:rgba(17,17,17,.055);
+  --grid-line-dark:rgba(255,255,255,.035);
+  --grid-size:34px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%}
+body{
+  background:var(--page);
+  font-family:var(--body);
+  color:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+  touch-action:none;
+  -webkit-tap-highlight-color:transparent;
+}
+canvas{display:block}
+svg{display:block}
+button{font:inherit;color:inherit;background:none;border:none;padding:0;cursor:pointer}
+input{font:inherit}
+
+.paper{
+  background-color:var(--cream);
+  background-image:
+    linear-gradient(0deg,var(--grid-line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  background-size:var(--grid-size) var(--grid-size);
+}
+.paper-dark{
+  background-color:var(--page);
+  background-image:
+    linear-gradient(0deg,var(--grid-line-dark) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-line-dark) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+
+.font-display{font-family:var(--display);letter-spacing:.02em;line-height:1}
+.font-body{font-family:var(--body);font-weight:500}
+.font-data{font-family:var(--data);font-weight:700;letter-spacing:.14em}
+
+.sticker{
+  background:var(--white);
+  color:var(--ink);
+  border:var(--bd) solid var(--ink);
+  border-radius:var(--r);
+  box-shadow:var(--sh);
+}
+.sticker-sm{
+  background:var(--white);
+  color:var(--ink);
+  border:var(--bd-sm) solid var(--ink);
+  border-radius:var(--r-sm);
+  box-shadow:var(--sh-sm);
+}
+.sticker-lg{
+  background:var(--white);
+  color:var(--ink);
+  border:var(--bd-lg) solid var(--ink);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);
+}
+.tilt-l{transform:rotate(-2deg)}
+.tilt-r{transform:rotate(2deg)}
+.tilt-l-hard{transform:rotate(-5deg)}
+.tilt-r-hard{transform:rotate(6deg)}
+.flat{box-shadow:none}
+
+.fill-yellow{background:var(--yellow);color:var(--ink)}
+.fill-coral{background:var(--coral);color:var(--ink)}
+.fill-cyan{background:var(--cyan);color:var(--ink)}
+.fill-cream{background:var(--cream);color:var(--ink)}
+.fill-green{background:var(--green);color:var(--ink)}
+.fill-ink{background:var(--ink);color:var(--cream)}
+
+.chip{
+  display:inline-block;
+  font-family:var(--data);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  background:var(--coral);
+  color:var(--ink);
+  border:var(--bd-sm) solid var(--ink);
+  border-radius:var(--r-sm);
+  padding:6px 10px;
+  box-shadow:var(--sh-sm);
+}
+.eyebrow{
+  display:inline-block;
+  font-family:var(--data);
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  background:var(--coral);
+  color:var(--ink);
+  border:var(--bd-sm) solid var(--ink);
+  border-radius:var(--r-sm);
+  padding:5px 9px;
+  box-shadow:var(--sh-sm);
+  transform:rotate(-1deg);
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  font-family:var(--display);
+  font-size:20px;
+  letter-spacing:.02em;
+  background:var(--yellow);
+  color:var(--ink);
+  border:var(--bd) solid var(--ink);
+  border-radius:var(--r);
+  box-shadow:var(--sh);
+  padding:14px 26px;
+  cursor:pointer;
+  transform:rotate(-1.5deg);
+  transition:transform .08s ease,box-shadow .08s ease;
+}
+.btn:active{transform:rotate(-1.5deg) translate(4px,4px);box-shadow:var(--sh-sm)}
+
+.rail-motif{position:relative;height:26px}
+.rail-motif::before{
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 14px,transparent 14px 34px);
+  border-radius:2px;
+}
+.rail-motif::after{
+  content:"";position:absolute;left:0;right:0;top:5px;height:16px;
+  border-top:5px solid var(--cyan);border-bottom:5px solid var(--cyan);
+}
+.hazard{
+  height:22px;
+  background:repeating-linear-gradient(45deg,var(--coral) 0 15px,var(--ink) 15px 30px);
+  border-bottom:var(--bd) solid var(--ink);
+}
+
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;background:var(--page)}
+#tv-root,#pad-root{position:fixed;inset:0;pointer-events:none}
+#tv-root>*,#pad-root>*{pointer-events:auto}
+#tv-root[hidden],#pad-root[hidden],#gl[hidden]{display:none}
+
+.boot{
+  position:fixed;inset:0;z-index:50;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  text-align:center;padding:24px;
+}
+.boot h1{
+  margin:0;
+  font-family:var(--display);
+  font-size:clamp(34px,7vw,86px);
+  line-height:1;
+  color:var(--ink);
+  background:var(--yellow);
+  border:var(--bd-lg) solid var(--ink);
+  border-radius:var(--r-lg);
+  box-shadow:var(--sh-lg);
+  padding:18px 30px 24px;
+  transform:rotate(-2deg);
+}
+.boot p{
+  margin:0;
+  max-width:32ch;
+  font-family:var(--body);
+  font-weight:500;
+  font-size:clamp(14px,2.2vw,19px);
+  line-height:1.45;
+  color:var(--cream);
+}
+.boot p b{color:var(--yellow)}
+.boot .code-entry{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+.boot input{
+  width:6.5ch;
+  font-family:var(--display);
+  font-size:clamp(28px,6vw,52px);
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--ink);
+  background:var(--cream);
+  border:var(--bd-lg) solid var(--ink);
+  border-radius:var(--r);
+  box-shadow:var(--sh);
+  padding:10px 6px 14px;
+  transform:rotate(1.5deg);
+  outline:none;
+}
+.boot .err{
+  font-family:var(--data);font-weight:700;font-size:12px;letter-spacing:.16em;
+  color:var(--ink);background:var(--coral);
+  border:var(--bd-sm) solid var(--ink);border-radius:var(--r-sm);
+  padding:6px 10px;box-shadow:var(--sh-sm);transform:rotate(-1deg);
+}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

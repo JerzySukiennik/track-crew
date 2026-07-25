@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track Crew — Variant B · Sticker Arcade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================
+   TRACK CREW — VARIANT B "STICKER ARCADE"
+   =========================================================== */
+:root{
+  --ink:#111111;
+  --yellow:#FFD400;
+  --coral:#FF5747;
+  --cyan:#21D0DE;
+  --cream:#FFF6E9;
+  --green:#7CD628;
+  --page:#2B2B30;
+  --page-2:#232327;
+
+  --bd:4px;
+  --sh:8px 8px 0 var(--ink);
+  --sh-sm:4px 4px 0 var(--ink);
+  --sh-lg:14px 14px 0 var(--ink);
+
+  --display:"Bungee","Arial Black","Helvetica Neue",sans-serif;
+  --body:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --data:"Space Mono","SFMono-Regular",Menlo,monospace;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page);
+  background-image:
+    linear-gradient(0deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:48px 48px;
+  font-family:var(--body);
+  color:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  padding:56px 28px 72px;
+}
+svg{display:block}
+
+/* ---------- page chrome ---------- */
+.page{max-width:1500px;margin:0 auto}
+
+.masthead{display:flex;flex-wrap:wrap;align-items:flex-end;gap:22px;margin-bottom:22px}
+.logo-sticker{
+  display:inline-flex;align-items:center;gap:14px;
+  background:var(--yellow);color:var(--ink);
+  border:var(--bd) solid var(--ink);border-radius:8px;
+  padding:12px 20px 14px;box-shadow:var(--sh);
+  transform:rotate(-2deg);
+}
+.logo-sticker .word{font-family:var(--display);font-size:38px;line-height:1;letter-spacing:.01em}
+.masthead .tag{
+  font-family:var(--data);font-weight:700;font-size:12px;letter-spacing:.16em;
+  background:var(--coral);color:var(--ink);border:3px solid var(--ink);border-radius:6px;
+  padding:8px 12px;box-shadow:var(--sh-sm);transform:rotate(1.5deg)
+}
+.masthead .blurb{
+  font-size:14px;line-height:1.5;max-width:400px;color:#D8D4CC;margin-bottom:4px
+}
+.masthead .blurb b{color:var(--cream)}
+
+/* rail divider — the signature motif */
+.rail{position:relative;height:26px;margin:26px 0 44px}
+.rail::before{ /* sleepers */
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 14px,transparent 14px 34px);
+  border-radius:2px;
+}
+.rail::after{ /* two rails */
+  content:"";position:absolute;left:0;right:0;top:5px;height:16px;
+  border-top:5px solid var(--cyan);border-bottom:5px solid var(--cyan);
+}
+
+/* ---------- board ---------- */
+.board{display:flex;flex-wrap:wrap;gap:64px 56px;align-items:flex-start;justify-content:flex-start}
+.slot{display:flex;flex-direction:column;gap:18px}
+.stack{display:flex;flex-direction:column;gap:56px}
+
+.caption{max-width:520px;display:flex;gap:12px;align-items:flex-start}
+.caption .num{
+  flex:none;font-family:var(--display);font-size:13px;color:var(--ink);
+  background:var(--cream);border:3px solid var(--ink);border-radius:5px;
+  padding:5px 8px;box-shadow:3px 3px 0 rgba(0,0,0,.5)
+}
+.caption .txt{font-family:var(--data);font-size:12px;line-height:1.6;color:#CFCBC3;letter-spacing:.02em}
+.caption .txt b{color:var(--yellow);letter-spacing:.1em}
+
+/* ===========================================================
+   SCREEN 1 — PHONE · LANDSCAPE
+   The pad is held sideways: notch on the LEFT short edge,
+   home indicator on the right. Design space is 1:1 iPhone XR
+   landscape (896 × 414 CSS px) and the whole frame is scaled
+   down as one unit so it sits beside the 900px TV column.
+   =========================================================== */
+.phone-shell{
+  --ph-scale:.58;                        /* 926 × .58 ≈ 537px in the board */
+  flex:none;
+  width:calc(926px * var(--ph-scale));
+  height:calc(444px * var(--ph-scale));
+}
+.phone{
+  width:926px;height:444px;flex:none;    /* 896×414 screen + 15px bezel */
+  background:var(--ink);border:5px solid var(--ink);border-radius:52px;
+  box-shadow:var(--sh-lg);
+  padding:10px;
+  transform:scale(var(--ph-scale));transform-origin:top left;
+}
+.ph-screen{
+  position:relative;width:100%;height:100%;overflow:hidden;
+  border-radius:42px;background:var(--cream);
+  background-image:
+    linear-gradient(0deg,rgba(17,17,17,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(17,17,17,.055) 1px,transparent 1px);
+  background-size:34px 34px;
+}
+/* notch: left short edge. Nothing is laid out inside x < 56px. */
+.ph-notch{
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:26px;height:150px;background:var(--ink);border-radius:0 16px 16px 0;z-index:5
+}
+
+/* faint rail motif — the deliberately empty middle of the pad */
+.ph-rail{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:400px;height:22px;opacity:.38;z-index:1;pointer-events:none
+}
+.ph-rail::before{ /* sleepers */
+  content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 12px,transparent 12px 30px);
+  border-radius:2px
+}
+.ph-rail::after{ /* two rails */
+  content:"";position:absolute;left:0;right:0;top:4px;height:14px;
+  border-top:4px solid var(--cyan);border-bottom:4px solid var(--cyan)
+}
+
+/* identity — colour + hat, nothing else. Top-left, clear of the notch. */
+.ph-id{
+  position:absolute;top:16px;left:62px;z-index:4;
+  width:66px;height:54px;background:var(--coral);
+  border:var(--bd) solid var(--ink);border-radius:12px;box-shadow:var(--sh-sm);
+  display:grid;place-items:center;transform:rotate(-5deg);color:var(--ink)
+}
+.ph-id svg{width:34px;height:34px}
+
+/* holding readout — top-centre, out of both thumb arcs */
+.ph-hold{
+  position:absolute;top:12px;left:50%;z-index:3;
+  transform:translateX(-50%) rotate(1.6deg);
+  display:flex;align-items:center;gap:12px;
+  background:#fff;border:var(--bd) solid var(--ink);border-radius:12px;
+  box-shadow:var(--sh);padding:10px 20px 10px 12px;color:var(--ink)
+}
+.ph-hold .glyph{
+  width:46px;height:46px;flex:none;background:var(--yellow);
+  border:3px solid var(--ink);border-radius:8px;display:grid;place-items:center
+}
+.ph-hold .glyph svg{width:30px;height:30px}
+.ph-hold .txt{display:flex;flex-direction:column;gap:2px;line-height:1}
+.ph-hold .name{font-family:var(--display);font-size:22px;letter-spacing:.02em}
+.ph-hold .count{font-family:var(--display);font-size:26px;color:var(--coral);-webkit-text-stroke:0}
+.ph-hold .row{display:flex;align-items:baseline;gap:9px}
+
+/* joystick — bottom-left corner, under the resting left thumb */
+.ph-stick{
+  position:absolute;left:56px;bottom:26px;width:176px;height:176px;z-index:2;
+  background:var(--cyan);border:5px solid var(--ink);border-radius:50%;
+  box-shadow:var(--sh);display:grid;place-items:center
+}
+.ph-stick .ring{
+  position:absolute;inset:20px;border:3px dashed rgba(17,17,17,.45);border-radius:50%
+}
+.ph-stick .tick{position:absolute;background:var(--ink);border-radius:2px}
+.ph-stick .t-up{width:8px;height:18px;top:14px;left:calc(50% - 4px)}
+.ph-stick .t-dn{width:8px;height:18px;bottom:14px;left:calc(50% - 4px)}
+.ph-stick .t-l{height:8px;width:18px;left:14px;top:calc(50% - 4px)}
+.ph-stick .t-r{height:8px;width:18px;right:14px;top:calc(50% - 4px)}
+.ph-stick .knob{
+  position:relative;width:84px;height:84px;border-radius:50%;
+  background:var(--yellow);border:5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  transform:translate(16px,-14px);display:grid;place-items:center;color:var(--ink)
+}
+.ph-stick .knob svg{width:44px;height:44px;opacity:.85}
+
+/* action button — bottom-right corner, under the resting right thumb */
+.ph-act{
+  position:absolute;right:52px;bottom:34px;width:150px;height:150px;border-radius:50%;z-index:2;
+  background:var(--coral);border:5px solid var(--ink);box-shadow:10px 10px 0 var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:var(--ink)
+}
+.ph-act svg{width:38px;height:38px}
+.ph-act .label{font-family:var(--display);font-size:21px;letter-spacing:.02em;line-height:1;text-align:center}
+.ph-act .ctx{
+  position:absolute;top:-26px;right:-4px;
+  font-family:var(--data);font-weight:700;font-size:11px;letter-spacing:.14em;
+  background:var(--yellow);color:var(--ink);border:3px solid var(--ink);border-radius:6px;
+  padding:5px 9px;box-shadow:var(--sh-sm);transform:rotate(6deg);white-space:nowrap
+}
+/* home indicator: right short edge in landscape */
+.ph-home{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  width:6px;height:150px;border-radius:3px;background:rgba(17,17,17,.35)
+}
+
+/* ===========================================================
+   TV FRAMES
+   =========================================================== */
+.tv-wrap{display:flex;flex-direction:column;align-items:center;width:min(900px,92vw)}
+.tv{
+  width:100%;aspect-ratio:16/9;background:var(--ink);
+  border:10px solid var(--ink);border-radius:16px;box-shadow:var(--sh-lg);
+}
+.tv-screen{
+  --u:9px; /* fallback: 1% of the 900px design width */
+  width:100%;height:100%;overflow:hidden;border-radius:7px;
+  background:var(--cream);color:var(--ink);
+  display:flex;flex-direction:column;
+}
+@supports (container-type:inline-size){
+  .tv-screen{container-type:inline-size;--u:1cqw}
+}
+.tv-stand{width:100%;display:flex;flex-direction:column;align-items:center}
+.tv-stand .neck{width:14%;height:20px;background:var(--ink);clip-path:polygon(22% 0,78% 0,100% 100%,0 100%)}
+.tv-stand .foot{width:34%;height:12px;background:var(--ink);border-radius:0 0 6px 6px}
+
+/* shared inside-tv bits */
+.tv-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(1.6*var(--u)) calc(2.4*var(--u));
+  border-bottom:calc(.45*var(--u)) solid var(--ink);background:var(--cream)
+}
+.tv-mark{display:flex;align-items:center;gap:calc(1*var(--u))}
+.tv-mark .chip{
+  font-family:var(--display);font-size:calc(1.8*var(--u));line-height:1;
+  background:var(--yellow);border:calc(.35*var(--u)) solid var(--ink);border-radius:calc(.5*var(--u));
+  padding:calc(.7*var(--u)) calc(1.1*var(--u));transform:rotate(-2deg)
+}
+.tv-mark .loco{width:calc(4.2*var(--u));height:calc(3*var(--u));color:var(--ink)}
+.tv-top .state{
+  font-family:var(--data);font-weight:700;font-size:calc(1.15*var(--u));letter-spacing:.18em;
+  border:calc(.35*var(--u)) solid var(--ink);border-radius:calc(.4*var(--u));
+  padding:calc(.5*var(--u)) calc(1*var(--u));background:var(--cyan)
+}
+.footbar{
+  margin-top:auto;background:var(--ink);color:var(--cream);
+  display:flex;align-items:center;gap:calc(2*var(--u));
+  padding:calc(1.3*var(--u)) calc(2.4*var(--u));
+}
+.footbar .tile{width:calc(9*var(--u));height:calc(7*var(--u));flex:none}
+.footbar .line1{font-family:var(--display);font-size:calc(2.2*var(--u));line-height:1.05;color:var(--yellow)}
+.footbar .line2{font-family:var(--body);font-weight:500;font-size:calc(1.5*var(--u));line-height:1.35;margin-top:calc(.5*var(--u));color:#EFE9DE}
+.footbar .stamp{
+  margin-left:auto;flex:none;font-family:var(--display);font-size:calc(1.3*var(--u));line-height:1.15;text-align:center;
+  background:var(--coral);color:var(--ink);border:calc(.35*var(--u)) solid var(--cream);
+  border-radius:calc(.5*var(--u));padding:calc(.8*var(--u)) calc(1.2*var(--u));transform:rotate(-4deg)
+}
+
+/* ---------- SCREEN 2 — JOIN ---------- */
+.join-body{
+  flex:1;display:flex;gap:calc(2.6*var(--u));
+  padding:calc(2.2*var(--u)) calc(2.4*var(--u)) calc(1.6*var(--u));
+}
+.qr-card{
+  flex:none;background:#fff;border:calc(.5*var(--u)) solid var(--ink);border-radius:calc(.8*var(--u));
+  box-shadow:calc(.9*var(--u)) calc(.9*var(--u)) 0 var(--ink);
+  padding:calc(1.2*var(--u));transform:rotate(-1.6deg);
+  display:flex;flex-direction:column;align-items:center;gap:calc(.9*var(--u))
+}
+.qr-card svg{width:calc(24*var(--u));height:calc(24*var(--u))}
+.qr-card .cap{
+  font-family:var(--display);font-size:calc(1.5*var(--u));letter-spacing:.04em;
+  background:var(--ink);color:var(--yellow);border-radius:calc(.4*var(--u));
+  padding:calc(.5*var(--u)) calc(1.1*var(--u))
+}
+.join-right{flex:1;display:flex;flex-direction:column;min-width:0}
+.eyebrow{
+  align-self:flex-start;font-family:var(--data);font-weight:700;
+  font-size:calc(1.15*var(--u));letter-spacing:.22em;
+  background:var(--coral);border:calc(.35*var(--u)) solid var(--ink);border-radius:calc(.4*var(--u));
+  padding:calc(.45*var(--u)) calc(.9*var(--u));box-shadow:calc(.4*var(--u)) calc(.4*var(--u)) 0 var(--ink);
+  transform:rotate(-1deg)
+}
+.code{display:flex;gap:calc(1.1*var(--u));margin-top:calc(1.4*var(--u))}
+.code span{
+  font-family:var(--display);font-size:calc(6.4*var(--u));line-height:1;
+  width:calc(9.4*var(--u));text-align:center;
+  background:var(--yellow);border:calc(.5*var(--u)) solid var(--ink);border-radius:calc(.7*var(--u));
+  box-shadow:calc(.8*var(--u)) calc(.8*var(--u)) 0 var(--ink);
+  padding:calc(1*var(--u)) 0 calc(1.4*var(--u));
+}
+.code span:nth-child(1){transform:rotate(-3deg)}
+.code span:nth-child(2){transform:rotate(2deg);background:var(--cream)}
+.code span:nth-child(3){transform:rotate(-1.5deg)}
+.code span:nth-child(4){transform:rotate(3deg);background:var(--cream)}
+.fallback{
+  margin-top:calc(1.8*var(--u));display:flex;align-items:center;gap:calc(1*var(--u));
+  font-family:var(--body);font-weight:500;font-size:calc(1.5*var(--u))
+}
+.fallback .url{
+  font-family:var(--data);font-weight:700;font-size:calc(1.7*var(--u));
+  background:var(--cyan);border:calc(.35*var(--u)) solid var(--ink);border-radius:calc(.4*var(--u));
+  padding:calc(.35*var(--u)) calc(.8*var(--u))
+}
+.crew{display:flex;gap:calc(1*var(--u));margin-top:auto}
+.slot-card{
+  flex:1;min-width:0;border:calc(.45*var(--u)) solid var(--ink);border-radius:calc(.7*var(--u));
+  box-shadow:calc(.6*var(--u)) calc(.6*var(--u)) 0 var(--ink);
+  padding:calc(.9*var(--u)) calc(.4*var(--u));
+  display:flex;flex-direction:column;align-items:center;gap:calc(.5*var(--u));color:var(--ink)
+}
+.slot-card svg{width:calc(3.4*var(--u));height:calc(3.4*var(--u))}
+.slot-card .who{font-family:var(--display);font-size:calc(1.5*var(--u));letter-spacing:.02em}
+.slot-card.p1{background:var(--coral);transform:rotate(-1.5deg)}
+.slot-card.p2{background:var(--cyan);transform:rotate(1deg)}
+.slot-card.p3{background:var(--yellow);transform:rotate(-.8deg)}
+.slot-card.open{
+  background:transparent;border-style:dashed;box-shadow:none;color:rgba(17,17,17,.5)
+}
+.slot-card.open .who{font-family:var(--data);font-weight:700;font-size:calc(1.15*var(--u));letter-spacing:.16em}
+.slot-card.open .dot{
+  width:calc(3.4*var(--u));height:calc(3.4*var(--u));border-radius:50%;
+  border:calc(.35*var(--u)) dashed rgba(17,17,17,.5)
+}
+
+/* ---------- SCREEN 3 — END OF ROUND ---------- */
+.hazard{
+  height:calc(2.4*var(--u));flex:none;
+  background:repeating-linear-gradient(45deg,var(--coral) 0 calc(1.6*var(--u)),var(--ink) calc(1.6*var(--u)) calc(3.2*var(--u)));
+  border-bottom:calc(.45*var(--u)) solid var(--ink)
+}
+.end-body{flex:1;display:flex;flex-direction:column;padding:calc(2*var(--u)) calc(2.4*var(--u)) calc(1.6*var(--u))}
+.end-head{display:flex;align-items:flex-start;gap:calc(2*var(--u))}
+.end-head .words{flex:1;min-width:0}
+.end-head h1{
+  margin:0;font-family:var(--display);font-size:calc(6.2*var(--u));line-height:.92;letter-spacing:.005em
+}
+.end-head h1 em{font-style:normal;color:var(--coral);-webkit-text-stroke:calc(.18*var(--u)) var(--ink)}
+.end-head p{
+  margin:calc(1.1*var(--u)) 0 0;font-family:var(--body);font-weight:500;
+  font-size:calc(1.75*var(--u));line-height:1.35;max-width:calc(52*var(--u))
+}
+.wreck{flex:none;width:calc(24*var(--u));transform:rotate(3deg)}
+.round-stamp{
+  position:relative;flex:none;align-self:flex-start;
+  font-family:var(--display);font-size:calc(1.5*var(--u));line-height:1.1;text-align:center;
+  background:var(--yellow);border:calc(.45*var(--u)) solid var(--ink);border-radius:calc(.6*var(--u));
+  padding:calc(.8*var(--u)) calc(1.1*var(--u));box-shadow:calc(.6*var(--u)) calc(.6*var(--u)) 0 var(--ink);
+  transform:rotate(7deg)
+}
+.stats{display:flex;gap:calc(1.4*var(--u));margin-top:auto;padding-top:calc(2*var(--u))}
+.stat{
+  flex:1;border:calc(.5*var(--u)) solid var(--ink);border-radius:calc(.7*var(--u));
+  box-shadow:calc(.7*var(--u)) calc(.7*var(--u)) 0 var(--ink);
+  padding:calc(1*var(--u)) calc(1.2*var(--u)) calc(1.1*var(--u));background:#fff
+}
+.stat .k{font-family:var(--data);font-weight:700;font-size:calc(1.1*var(--u));letter-spacing:.14em;opacity:.75}
+.stat .v{font-family:var(--display);font-size:calc(3.4*var(--u));line-height:1.05;margin-top:calc(.4*var(--u))}
+.stat .v small{font-size:calc(1.6*var(--u))}
+.stat.a{background:var(--cyan);transform:rotate(-1deg)}
+.stat.b{background:var(--cream)}
+.stat.c{background:var(--yellow);transform:rotate(1deg)}
+.stat.d{background:var(--coral)}
+.aboard{display:flex;align-items:center;gap:calc(.7*var(--u));margin-left:auto;flex:none}
+.aboard i{
+  display:block;width:calc(1.8*var(--u));height:calc(1.8*var(--u));border-radius:50%;
+  border:calc(.35*var(--u)) solid var(--cream)
+}
+.aboard i.on{background:var(--green)}
+.aboard i.off{background:transparent;border-style:dashed;opacity:.6}
+
+/* ===========================================================
+   SYSTEM STRIP
+   =========================================================== */
+.system{
+  margin-top:64px;background:var(--cream);color:var(--ink);
+  border:var(--bd) solid var(--ink);border-radius:10px;box-shadow:var(--sh);
+  padding:20px 24px;display:flex;flex-wrap:wrap;gap:26px 34px;align-items:flex-start
+}
+.system h2{
+  margin:0;font-family:var(--display);font-size:15px;letter-spacing:.06em;
+  background:var(--ink);color:var(--yellow);padding:7px 10px;border-radius:5px;transform:rotate(-1.5deg)
+}
+.swatches{display:flex;flex-wrap:wrap;gap:12px}
+.sw{width:104px}
+.sw .chipc{height:52px;border:3px solid var(--ink);border-radius:6px;box-shadow:3px 3px 0 var(--ink)}
+.sw .hex{font-family:var(--data);font-size:11px;font-weight:700;margin-top:9px;letter-spacing:.04em}
+.sw .nm{font-family:var(--data);font-size:10px;letter-spacing:.12em;opacity:.6;text-transform:uppercase}
+.fonts{display:flex;flex-direction:column;gap:12px;min-width:230px}
+.fonts div{border-left:5px solid var(--ink);padding-left:11px}
+.fonts .big{font-family:var(--display);font-size:19px;line-height:1.1}
+.fonts .mid{font-family:var(--body);font-weight:700;font-size:18px}
+.fonts .small{font-family:var(--data);font-size:14px;font-weight:700}
+.fonts .role{font-family:var(--data);font-size:10px;letter-spacing:.16em;opacity:.6;margin-top:3px;text-transform:uppercase}
+
+@media (max-width:520px){
+  body{padding:28px 12px 48px}
+  .phone-shell{--ph-scale:.5}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ================= icon defs ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="hat-cap" viewBox="0 0 32 32"><!-- conductor cap -->
+      <path d="M6 17c0-6 4-9.5 10-9.5S26 11 26 17z"/>
+      <rect x="4.5" y="17" width="23" height="4.2" rx="1"/>
+      <path d="M3 21.5h26c0 3.6-6.2 5-13 5s-13-1.4-13-5z"/>
+      <rect x="13" y="10" width="6" height="3.2" rx="1.2" fill="#FFF6E9"/>
+    </symbol>
+    <symbol id="hat-cowboy" viewBox="0 0 32 32">
+      <path d="M9.5 18.5c0-8 2-12 6.5-12s6.5 4 6.5 12z"/>
+      <path d="M2 18.5h28c0 4-6.6 5.6-14 5.6S2 22.5 2 18.5z"/>
+      <rect x="9" y="15" width="14" height="3" fill="#FFF6E9"/>
+    </symbol>
+    <symbol id="hat-beanie" viewBox="0 0 32 32">
+      <circle cx="16" cy="6" r="3"/>
+      <path d="M6 20c0-6.5 4.5-11 10-11s10 4.5 10 11z"/>
+      <rect x="4" y="20" width="24" height="5.4" rx="2.2"/>
+      <rect x="11" y="12" width="10" height="3" fill="#FFF6E9"/>
+    </symbol>
+    <symbol id="wood" viewBox="0 0 32 32"><!-- two logs, end grain showing -->
+      <rect x="1.5" y="5" width="29" height="10" rx="5"/>
+      <circle cx="6.5" cy="10" r="3.2" fill="#FFD400"/><circle cx="6.5" cy="10" r="1.2"/>
+      <rect x="1.5" y="18" width="29" height="10" rx="5"/>
+      <circle cx="6.5" cy="23" r="3.2" fill="#FFD400"/><circle cx="6.5" cy="23" r="1.2"/>
+    </symbol>
+    <symbol id="grab" viewBox="0 0 32 32"><!-- pick up: item lifting out of a crate -->
+      <path d="M16 2l6 6h-4v7h-4V8h-4z"/>
+      <path d="M4 17h24v11H4z" fill="none" stroke="currentColor" stroke-width="3.4"/>
+      <rect x="4" y="17" width="24" height="3.2"/>
+    </symbol>
+    <symbol id="pan" viewBox="0 0 32 32"><!-- 4-way move -->
+      <path d="M16 2l4.4 5h-8.8zM16 30l-4.4-5h8.8zM2 16l5-4.4v8.8zM30 16l-5 4.4v-8.8z"/>
+    </symbol>
+    <symbol id="loco" viewBox="0 0 48 32">
+      <rect x="2" y="14" width="34" height="10" rx="1.5"/>
+      <rect x="24" y="4" width="12" height="11" rx="1.5"/>
+      <rect x="6" y="6" width="7" height="9" rx="1"/>
+      <rect x="0" y="24" width="44" height="3"/>
+      <circle cx="10" cy="27.5" r="3.6"/><circle cx="22" cy="27.5" r="3.6"/><circle cx="33" cy="27.5" r="3.6"/>
+      <rect x="27" y="7" width="6" height="4.5" fill="#FFF6E9"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page">
+
+  <!-- ================= masthead ================= -->
+  <header class="masthead">
+    <div class="logo-sticker">
+      <svg class="loco" width="52" height="34" viewBox="0 0 48 32" fill="currentColor" aria-hidden="true"><use href="#loco"/></svg>
+      <span class="word">TRACK CREW</span>
+    </div>
+    <span class="tag">VARIANT B · STICKER ARCADE</span>
+    <p class="blurb">Co-op party game. <b>Laptop + TV</b> runs the world, <b>1–5 phones</b> are the controllers. The train never stops — lay rail or lose it.</p>
+  </header>
+
+  <div class="rail" aria-hidden="true"></div>
+
+  <div class="board">
+
+    <!-- ============ SCREEN 1 — PHONE CONTROLLER ============ -->
+    <section class="slot">
+      <div class="phone-shell">
+        <div class="phone">
+          <div class="ph-screen">
+            <div class="ph-notch"></div>
+
+            <!-- deliberately empty middle: the player looks at the TV -->
+            <div class="ph-rail" aria-hidden="true"></div>
+
+            <!-- identity: colour + hat only -->
+            <div class="ph-id" title="Player colour and hat">
+              <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#hat-cap"/></svg>
+            </div>
+
+            <!-- carrying -->
+            <div class="ph-hold">
+              <span class="glyph"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#wood"/></svg></span>
+              <span class="txt">
+                <span class="row"><span class="name">WOOD</span><span class="count">×7</span></span>
+              </span>
+            </div>
+
+            <!-- joystick -->
+            <div class="ph-stick">
+              <span class="ring"></span>
+              <span class="tick t-up"></span><span class="tick t-dn"></span>
+              <span class="tick t-l"></span><span class="tick t-r"></span>
+              <span class="knob"><svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#pan"/></svg></span>
+            </div>
+
+            <!-- one context action -->
+            <div class="ph-act">
+              <span class="ctx">NEAR: LOG PILE</span>
+              <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#grab"/></svg>
+              <span class="label">PICK UP</span>
+            </div>
+
+            <div class="ph-home"></div>
+          </div>
+        </div>
+      </div>
+      <div class="caption">
+        <span class="num">01</span>
+        <span class="txt"><b>PHONE CONTROLLER</b> — 896×414 landscape, Safari iOS. Held sideways: notch left, home indicator right, safe-area padding on both short edges. Thumb stick bottom-left, one action button bottom-right, carried item top-centre. The button label swaps with context: PICK UP / PLACE RAIL / DROP / SWAP. The wide middle stays empty on purpose — it is a pad, not a dashboard. <b>NOTE</b> — Safari on iOS cannot force orientation, so a held-upright phone gets a full-screen “ROTATE YOUR PHONE” prompt until it is turned sideways.</span>
+      </div>
+    </section>
+
+    <div class="stack">
+
+    <!-- ============ SCREEN 2 — TV JOIN ============ -->
+    <section class="slot">
+      <div class="tv-wrap">
+        <div class="tv">
+          <div class="tv-screen">
+
+            <div class="tv-top">
+              <span class="tv-mark">
+                <svg class="loco" viewBox="0 0 48 32" fill="currentColor" aria-hidden="true"><use href="#loco"/></svg>
+                <span class="chip">TRACK CREW</span>
+              </span>
+              <span class="state">LOBBY · WAITING FOR CREW</span>
+            </div>
+
+            <div class="join-body">
+              <div class="qr-card">
+                <svg viewBox="-1 -1 27 27" fill="#111111" aria-label="QR code placeholder" role="img">
+                  <rect x="-1" y="-1" width="27" height="27" fill="#ffffff"/>
+                  <path d="M0 0h7v1h-7zM8 0h2v1h-2zM11 0h1v1h-1zM13 0h2v1h-2zM16 0h1v1h-1zM18 0h7v1h-7zM0 1h1v1h-1zM6 1h1v1h-1zM8 1h4v1h-4zM13 1h2v1h-2zM18 1h1v1h-1zM24 1h1v1h-1zM0 2h1v1h-1zM2 2h3v1h-3zM6 2h1v1h-1zM9 2h1v1h-1zM11 2h1v1h-1zM13 2h4v1h-4zM18 2h1v1h-1zM20 2h3v1h-3zM24 2h1v1h-1zM0 3h1v1h-1zM2 3h3v1h-3zM6 3h1v1h-1zM9 3h1v1h-1zM12 3h1v1h-1zM14 3h3v1h-3zM18 3h1v1h-1zM20 3h3v1h-3zM24 3h1v1h-1zM0 4h1v1h-1zM2 4h3v1h-3zM6 4h1v1h-1zM9 4h2v1h-2zM12 4h2v1h-2zM16 4h1v1h-1zM18 4h1v1h-1zM20 4h3v1h-3zM24 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM12 5h1v1h-1zM14 5h2v1h-2zM18 5h1v1h-1zM24 5h1v1h-1zM0 6h7v1h-7zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM16 6h1v1h-1zM18 6h7v1h-7zM10 7h1v1h-1zM15 7h1v1h-1zM3 8h2v1h-2zM6 8h1v1h-1zM8 8h3v1h-3zM12 8h3v1h-3zM16 8h2v1h-2zM22 8h3v1h-3zM2 9h4v1h-4zM8 9h4v1h-4zM18 9h1v1h-1zM23 9h2v1h-2zM0 10h1v1h-1zM2 10h11v1h-11zM15 10h5v1h-5zM24 10h1v1h-1zM0 11h3v1h-3zM4 11h2v1h-2zM8 11h1v1h-1zM10 11h1v1h-1zM15 11h3v1h-3zM21 11h2v1h-2zM4 12h1v1h-1zM6 12h5v1h-5zM13 12h1v1h-1zM17 12h5v1h-5zM3 13h1v1h-1zM9 13h1v1h-1zM11 13h1v1h-1zM14 13h2v1h-2zM18 13h3v1h-3zM23 13h1v1h-1zM2 14h1v1h-1zM4 14h3v1h-3zM10 14h1v1h-1zM13 14h4v1h-4zM18 14h3v1h-3zM22 14h2v1h-2zM1 15h1v1h-1zM7 15h3v1h-3zM11 15h1v1h-1zM15 15h1v1h-1zM19 15h1v1h-1zM21 15h2v1h-2zM3 16h1v1h-1zM6 16h1v1h-1zM8 16h1v1h-1zM15 16h6v1h-6zM24 16h1v1h-1zM8 17h5v1h-5zM16 17h1v1h-1zM20 17h2v1h-2zM24 17h1v1h-1zM0 18h7v1h-7zM10 18h1v1h-1zM12 18h1v1h-1zM16 18h1v1h-1zM18 18h1v1h-1zM20 18h3v1h-3zM24 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM8 19h2v1h-2zM11 19h1v1h-1zM13 19h4v1h-4zM20 19h1v1h-1zM23 19h1v1h-1zM0 20h1v1h-1zM2 20h3v1h-3zM6 20h1v1h-1zM10 20h3v1h-3zM14 20h8v1h-8zM24 20h1v1h-1zM0 21h1v1h-1zM2 21h3v1h-3zM6 21h1v1h-1zM8 21h1v1h-1zM12 21h2v1h-2zM15 21h2v1h-2zM20 21h1v1h-1zM22 21h1v1h-1zM24 21h1v1h-1zM0 22h1v1h-1zM2 22h3v1h-3zM6 22h1v1h-1zM8 22h1v1h-1zM11 22h2v1h-2zM14 22h7v1h-7zM22 22h1v1h-1zM24 22h1v1h-1zM0 23h1v1h-1zM6 23h1v1h-1zM8 23h4v1h-4zM14 23h1v1h-1zM17 23h1v1h-1zM19 23h1v1h-1zM22 23h1v1h-1zM0 24h7v1h-7zM9 24h1v1h-1zM13 24h5v1h-5zM19 24h3v1h-3z"/>
+                </svg>
+                <span class="cap">SCAN TO JOIN</span>
+              </div>
+
+              <div class="join-right">
+                <span class="eyebrow">ROOM CODE</span>
+                <div class="code"><span>B</span><span>Q</span><span>Z</span><span>K</span></div>
+                <p class="fallback">No camera? Open <span class="url">trackcrew.gg</span> and type the code.</p>
+
+                <div class="crew">
+                  <div class="slot-card p1">
+                    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#hat-cap"/></svg>
+                    <span class="who">JUREK</span>
+                  </div>
+                  <div class="slot-card p2">
+                    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#hat-beanie"/></svg>
+                    <span class="who">MILA</span>
+                  </div>
+                  <div class="slot-card p3">
+                    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><use href="#hat-cowboy"/></svg>
+                    <span class="who">ANTEK</span>
+                  </div>
+                  <div class="slot-card open"><span class="dot"></span><span class="who">OPEN</span></div>
+                  <div class="slot-card open"><span class="dot"></span><span class="who">OPEN</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footbar">
+              <svg class="tile" viewBox="0 0 64 50" aria-hidden="true">
+                <polygon points="32,30 60,20 60,28 32,38" fill="#4CA315" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="32,30 4,20 4,28 32,38" fill="#3D8611" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="32,4 60,20 32,36 4,20" fill="#7CD628" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <rect x="28.5" y="9" width="7" height="10" fill="#111"/>
+                <polygon points="32,29 23.5,19 40.5,19" fill="#111"/>
+              </svg>
+              <div>
+                <div class="line1">THIS GAME HAS NO BUTTONS.</div>
+                <div class="line2">Walk your voxel onto the green START tile. When all boots are on the tile, the engine rolls.</div>
+              </div>
+              <span class="stamp">FEET<br>= ENTER</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="tv-stand"><span class="neck"></span><span class="foot"></span></div>
+      </div>
+      <div class="caption">
+        <span class="num">02</span>
+        <span class="txt"><b>TV JOIN SCREEN</b> — scan or type. Three crew aboard, two seats open. Nothing on this screen is clickable: confirmation happens by standing on a floor tile in the 3D lobby.</span>
+      </div>
+    </section>
+    <!-- (screen 3 follows in the same column) -->
+
+    <!-- ============ SCREEN 3 — END OF ROUND ============ -->
+    <section class="slot">
+      <div class="tv-wrap">
+        <div class="tv">
+          <div class="tv-screen">
+            <div class="hazard"></div>
+
+            <div class="tv-top">
+              <span class="tv-mark">
+                <svg class="loco" viewBox="0 0 48 32" fill="currentColor" aria-hidden="true"><use href="#loco"/></svg>
+                <span class="chip">TRACK CREW</span>
+              </span>
+              <span class="state" style="background:var(--coral)">RUN ENDED · NO TRACK LEFT</span>
+            </div>
+
+            <div class="end-body">
+              <div class="end-head">
+                <div class="words">
+                  <h1>OFF THE<br><em>RAILS!</em></h1>
+                  <p>The engine went looking for track and found a meadow. Nobody was carrying planks — everybody was carrying iron.</p>
+                </div>
+                <svg class="wreck" viewBox="0 0 210 132" aria-hidden="true">
+                  <!-- ground -->
+                  <rect x="0" y="120" width="210" height="8" fill="#111"/>
+                  <!-- planks that never got laid -->
+                  <g stroke="#111" stroke-width="3.5" fill="#C98B45">
+                    <rect x="6" y="103" width="44" height="10" rx="2" transform="rotate(-9 28 108)"/>
+                    <rect x="156" y="99" width="46" height="10" rx="2" transform="rotate(17 179 104)"/>
+                  </g>
+                  <!-- impact marks -->
+                  <g stroke="#111" stroke-width="5" stroke-linecap="round">
+                    <path d="M182 44l16-11"/><path d="M188 60h18"/><path d="M172 28l7-15"/>
+                  </g>
+                  <!-- tipped voxel loco -->
+                  <g transform="rotate(-22 110 74)">
+                    <rect x="52" y="52" width="96" height="34" fill="#FF5747" stroke="#111" stroke-width="5"/>
+                    <rect x="120" y="22" width="42" height="34" fill="#FFD400" stroke="#111" stroke-width="5"/>
+                    <rect x="130" y="30" width="22" height="16" fill="#FFF6E9" stroke="#111" stroke-width="4"/>
+                    <rect x="64" y="28" width="22" height="26" fill="#21D0DE" stroke="#111" stroke-width="5"/>
+                    <circle cx="76" cy="92" r="11" fill="#FFF6E9" stroke="#111" stroke-width="5"/>
+                    <circle cx="118" cy="92" r="11" fill="#FFF6E9" stroke="#111" stroke-width="5"/>
+                  </g>
+                </svg>
+                <span class="round-stamp">ATTEMPT<br>NO. 12</span>
+              </div>
+
+              <div class="stats">
+                <div class="stat a"><div class="k">ROUNDS SURVIVED</div><div class="v">6</div></div>
+                <div class="stat b"><div class="k">TOTAL DISTANCE</div><div class="v">1,284<small> M</small></div></div>
+                <div class="stat c"><div class="k">GOLD THIS ROUND</div><div class="v">+212</div></div>
+                <div class="stat d"><div class="k">SHARED PURSE</div><div class="v">1,940</div></div>
+              </div>
+            </div>
+
+            <div class="footbar">
+              <svg class="tile" viewBox="0 0 64 50" aria-hidden="true">
+                <polygon points="32,30 60,20 60,28 32,38" fill="#0FA3AF" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="32,30 4,20 4,28 32,38" fill="#0C8B95" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <polygon points="32,4 60,20 32,36 4,20" fill="#21D0DE" stroke="#111" stroke-width="2.5" stroke-linejoin="round"/>
+                <ellipse cx="32" cy="20" rx="9" ry="6" fill="none" stroke="#111" stroke-width="3.4" stroke-dasharray="36 12"/>
+                <polygon points="41,27 36.2,18.5 45.8,18.5" fill="#111"/>
+              </svg>
+              <div>
+                <div class="line1">STAND ON THE RETRY TILE.</div>
+                <div class="line2">The purse carries over. New run starts the moment the last pair of boots lands on the tile.</div>
+              </div>
+              <span class="aboard" title="2 of 3 crew on the tile"><i class="on"></i><i class="on"></i><i class="off"></i></span>
+              <span class="stamp">2 OF 3<br>ABOARD</span>
+            </div>
+
+          </div>
+        </div>
+        <div class="tv-stand"><span class="neck"></span><span class="foot"></span></div>
+      </div>
+      <div class="caption">
+        <span class="num">03</span>
+        <span class="txt"><b>END OF ROUND</b> — the derailment. Four stats, no menus. Retry is a place you stand, not a button you press; the dots count boots already on the tile.</span>
+      </div>
+    </section>
+
+    </div>
+
+  </div>
+
+  <!-- ================= system strip ================= -->
+  <section class="system">
+    <h2>SYSTEM</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chipc" style="background:#111111"></div><div class="hex">#111111</div><div class="nm">Ink</div></div>
+      <div class="sw"><div class="chipc" style="background:#FFD400"></div><div class="hex">#FFD400</div><div class="nm">Electric yellow</div></div>
+      <div class="sw"><div class="chipc" style="background:#FF5747"></div><div class="hex">#FF5747</div><div class="nm">Hot coral</div></div>
+      <div class="sw"><div class="chipc" style="background:#21D0DE"></div><div class="hex">#21D0DE</div><div class="nm">Cyan</div></div>
+      <div class="sw"><div class="chipc" style="background:#FFF6E9"></div><div class="hex">#FFF6E9</div><div class="nm">Off-white</div></div>
+      <div class="sw"><div class="chipc" style="background:#7CD628"></div><div class="hex">#7CD628</div><div class="nm">Tile green</div></div>
+      <div class="sw"><div class="chipc" style="background:#2B2B30"></div><div class="hex">#2B2B30</div><div class="nm">Page grey</div></div>
+    </div>
+    <div class="fonts">
+      <div><div class="big">BUNGEE</div><div class="role">Display · headlines, codes, buttons</div></div>
+      <div><div class="mid">Space Grotesk</div><div class="role">Body · sentences, hints</div></div>
+      <div><div class="small">SPACE MONO 700</div><div class="role">Utility · labels, stats, URL</div></div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

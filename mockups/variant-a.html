@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track Crew — Variant A · Wooden Toybox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Baloo+2:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F8ECD2;
+  --cream-deep:#EBD9B4;
+  --wood:#B8752F;
+  --wood-dark:#8A5220;
+  --green:#2F6B3C;
+  --red:#D33F30;
+  --brass:#F2B233;
+  --ink:#1E1712;
+  --page:#262320;
+
+  --bd:5px;
+  --shadow:8px 8px 0 var(--ink);
+  --shadow-lg:14px 14px 0 #100D0A;
+
+  --display:'Bungee','Arial Black',Impact,sans-serif;
+  --body:'Baloo 2','Trebuchet MS',system-ui,sans-serif;
+  --util:'Space Mono',ui-monospace,Menlo,monospace;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:var(--page);
+  background-image:
+    radial-gradient(120% 90% at 50% -10%, #322E29 0%, #262320 60%, #1C1A17 100%);
+  color:var(--cream);
+  font-family:var(--body);
+  min-height:100vh;
+  padding:44px 28px 64px;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- page chrome ---------- */
+.page-head{
+  max-width:1420px;margin:0 auto 40px;
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 20px;
+  border-bottom:3px solid #3D3831;padding-bottom:16px;
+}
+.page-head h1{
+  font-family:var(--display);font-size:26px;letter-spacing:.02em;
+  color:var(--cream);font-weight:400;
+}
+.page-head .v{
+  font-family:var(--util);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--brass);border:2px solid #4A443B;border-radius:999px;padding:5px 12px;
+}
+.page-head .n{
+  font-family:var(--util);font-size:12px;letter-spacing:.12em;color:#8F877A;margin-left:auto;
+}
+
+.stage{
+  max-width:1420px;margin:0 auto;
+  display:flex;flex-wrap:wrap;gap:60px 48px;justify-content:center;align-items:flex-start;
+}
+.unit{display:flex;flex-direction:column;gap:16px;align-items:flex-start;max-width:100%}
+.unit.u-phone{width:446px}
+.unit.u-tv{width:880px}
+.cap{
+  font-family:var(--util);font-size:12px;line-height:1.6;letter-spacing:.06em;
+  color:#A79C8B;max-width:100%;
+}
+.cap b{color:var(--brass);font-weight:700;letter-spacing:.16em}
+
+/* ---------- device frames ---------- */
+.phone{
+  width:446px;max-width:100%;
+  background:#141009;
+  border:var(--bd) solid var(--ink);
+  border-radius:58px;
+  padding:16px;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+}
+.phone::after{ /* home indicator */
+  content:"";position:absolute;left:50%;bottom:22px;transform:translateX(-50%);
+  width:130px;height:6px;border-radius:99px;background:rgba(30,23,18,.35);
+}
+.phone-screen{
+  width:414px;height:896px;max-width:100%;
+  border-radius:44px;overflow:hidden;position:relative;
+  background:
+    repeating-linear-gradient(90deg, rgba(30,23,18,.035) 0 2px, transparent 2px 52px),
+    radial-gradient(120% 70% at 50% -8%, #FFF7E6 0%, #F6E7C9 52%, #E9D5AC 100%);
+  display:flex;flex-direction:column;
+}
+
+.tv-set{width:880px;max-width:100%}
+.tv{
+  background:linear-gradient(180deg,#C88A45 0%,var(--wood) 42%,var(--wood-dark) 100%);
+  border:var(--bd) solid var(--ink);
+  border-radius:34px;
+  padding:20px 20px 26px;
+  box-shadow:var(--shadow-lg);
+  position:relative;
+}
+.tv::before{ /* grain */
+  content:"";position:absolute;inset:6px;border-radius:26px;pointer-events:none;
+  background:repeating-linear-gradient(96deg, rgba(30,23,18,.10) 0 1px, transparent 1px 14px);
+  opacity:.5;
+}
+.tv-screen{
+  position:relative;z-index:1;
+  aspect-ratio:16/9;width:100%;
+  border:var(--bd) solid var(--ink);
+  border-radius:20px;overflow:hidden;
+  background:
+    radial-gradient(90% 120% at 8% -10%, #FFF8E9 0%, #F7E9CC 46%, #EBD8B2 100%);
+  display:flex;flex-direction:column;
+  padding:22px 24px;gap:12px;
+}
+.tv-legs{display:flex;justify-content:space-between;padding:0 60px}
+.tv-legs span{
+  width:76px;height:22px;background:var(--wood-dark);
+  border:var(--bd) solid var(--ink);border-top:0;
+  border-radius:0 0 14px 14px;box-shadow:6px 8px 0 #100D0A;
+}
+
+/* ---------- shared bits ---------- */
+.eyebrow{
+  font-family:var(--util);font-weight:700;font-size:13px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--wood-dark);
+  display:flex;align-items:center;gap:10px;
+}
+.eyebrow .dot{width:11px;height:11px;background:var(--red);border:3px solid var(--ink);border-radius:3px}
+.card{
+  background:var(--cream);
+  border:var(--bd) solid var(--ink);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+}
+
+/* ---------- SCREEN 1 : phone ---------- */
+.ph-top{padding:20px 20px 0;display:flex;flex-direction:column;gap:18px}
+.ident{
+  align-self:flex-start;display:flex;align-items:center;gap:9px;
+  background:var(--green);color:var(--cream);
+  border:4px solid var(--ink);border-radius:999px;
+  padding:6px 16px 6px 7px;box-shadow:5px 5px 0 var(--ink);
+}
+.ident .puck{
+  width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.16);
+  border:3px solid var(--ink);display:grid;place-items:center;
+}
+.ident .puck svg{width:22px;height:22px}
+.ident span{font-family:var(--display);font-size:15px;letter-spacing:.04em}
+
+.holding{
+  display:flex;align-items:center;gap:16px;
+  background:var(--cream);border:5px solid var(--ink);border-radius:26px;
+  padding:14px 22px;box-shadow:7px 7px 0 var(--ink);
+}
+.holding .slot{
+  width:64px;height:64px;border-radius:16px;background:var(--cream-deep);
+  border:4px solid var(--ink);display:grid;place-items:center;flex:none;
+}
+.holding .slot svg{width:42px;height:42px}
+.holding .txt{display:flex;flex-direction:column;line-height:1}
+.holding .txt b{font-family:var(--display);font-size:30px;color:var(--ink);letter-spacing:.01em}
+.holding .txt i{
+  font-family:var(--util);font-style:normal;font-size:11px;letter-spacing:.22em;
+  color:var(--wood-dark);margin-top:7px;
+}
+.holding .count{
+  margin-left:auto;font-family:var(--display);font-size:38px;color:var(--red);line-height:1;
+}
+
+.ph-mid{flex:1;display:grid;place-items:center;opacity:.11}
+.ph-mid svg{width:300px;height:auto}
+
+.ph-pad{
+  padding:0 26px 54px;display:flex;align-items:flex-end;justify-content:space-between;
+}
+.stick{
+  width:196px;height:196px;border-radius:50%;flex:none;position:relative;
+  background:radial-gradient(circle at 50% 40%, rgba(184,117,47,.20), rgba(184,117,47,.34));
+  border:6px solid var(--ink);
+  box-shadow:inset 0 0 0 12px rgba(248,236,210,.55);
+}
+.stick .ring{
+  position:absolute;inset:26px;border-radius:50%;
+  border:4px dashed rgba(30,23,18,.32);
+}
+.knob{
+  position:absolute;left:50%;top:50%;
+  width:96px;height:96px;margin:-48px 0 0 -48px;
+  transform:translate(26px,-20px);
+  border-radius:50%;background:var(--brass);
+  border:6px solid var(--ink);
+  box-shadow:6px 6px 0 rgba(30,23,18,.55), inset 0 -8px 0 rgba(30,23,18,.14);
+}
+.knob::after{
+  content:"";position:absolute;left:50%;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;
+  border-radius:8px;background:rgba(30,23,18,.22);
+}
+
+.act{position:relative;flex:none;padding-top:34px}
+.act .tag{
+  position:absolute;top:-4px;left:50%;transform:translateX(-50%) rotate(-3deg);
+  background:var(--cream);border:4px solid var(--ink);border-radius:12px;
+  padding:4px 12px;font-family:var(--util);font-weight:700;font-size:11px;
+  letter-spacing:.18em;color:var(--wood-dark);white-space:nowrap;
+  box-shadow:4px 4px 0 var(--ink);
+}
+.btn-act{
+  width:172px;height:172px;border-radius:50%;
+  background:var(--red);border:7px solid var(--ink);
+  box-shadow:9px 9px 0 var(--ink), inset 0 -12px 0 rgba(30,23,18,.20);
+  display:grid;place-items:center;text-align:center;
+}
+.btn-act span{
+  font-family:var(--display);font-size:30px;line-height:.95;color:var(--cream);
+  letter-spacing:.01em;text-shadow:0 3px 0 rgba(30,23,18,.35);
+}
+
+/* ---------- SCREEN 2 : join ---------- */
+.join-main{flex:1;display:flex;gap:22px;min-height:0}
+.qr-card{
+  flex:none;width:250px;padding:16px 16px 12px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:var(--cream);border:var(--bd) solid var(--ink);border-radius:22px;
+  box-shadow:var(--shadow);
+}
+.qr-card svg{width:100%;height:auto;display:block}
+.qr-card .lbl{
+  font-family:var(--util);font-weight:700;font-size:11px;letter-spacing:.2em;color:var(--wood-dark);
+}
+.join-right{flex:1;display:flex;flex-direction:column;justify-content:center;gap:6px;min-width:0}
+.join-right .k-lbl{
+  font-family:var(--util);font-weight:700;font-size:13px;letter-spacing:.28em;color:var(--wood-dark);
+}
+.code{
+  font-family:var(--display);font-size:104px;line-height:.94;color:var(--ink);
+  letter-spacing:.06em;
+  text-shadow:7px 7px 0 var(--brass), 7px 7px 0 var(--ink);
+}
+.url{
+  margin-top:12px;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+  background:var(--green);color:var(--cream);border:4px solid var(--ink);border-radius:14px;
+  padding:8px 16px;box-shadow:6px 6px 0 var(--ink);
+  font-family:var(--util);font-weight:700;font-size:16px;letter-spacing:.04em;
+}
+.url em{font-style:normal;opacity:.75;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+
+.crew{display:flex;align-items:center;gap:10px;flex-wrap:nowrap}
+.crew-lbl{
+  font-family:var(--util);font-weight:700;font-size:12px;letter-spacing:.2em;
+  color:var(--wood-dark);white-space:nowrap;margin-right:2px;
+}
+.chip{
+  display:flex;align-items:center;gap:9px;flex:1;min-width:0;
+  border:4px solid var(--ink);border-radius:999px;padding:5px 16px 5px 6px;
+  box-shadow:5px 5px 0 var(--ink);
+}
+.chip .puck{
+  width:34px;height:34px;border-radius:50%;border:3px solid var(--ink);flex:none;
+  display:grid;place-items:center;background:rgba(255,255,255,.2);
+}
+.chip .puck svg{width:22px;height:22px}
+.chip b{font-family:var(--display);font-size:17px;letter-spacing:.02em;white-space:nowrap}
+.chip.c-green{background:var(--green);color:var(--cream)}
+.chip.c-red{background:var(--red);color:var(--cream)}
+.chip.c-brass{background:var(--brass);color:var(--ink)}
+.chip.open{
+  background:rgba(30,23,18,.05);border-style:dashed;box-shadow:none;color:var(--wood-dark);
+  justify-content:center;padding:9px 14px;
+}
+.chip.open b{font-family:var(--util);font-size:11px;letter-spacing:.2em}
+.chip.open .puck{border-style:dashed;background:transparent}
+
+.tile-strip{
+  display:flex;align-items:center;gap:20px;
+  background:var(--ink);border-radius:20px;padding:12px 22px;min-height:92px;
+  box-shadow:inset 0 0 0 4px rgba(248,236,210,.10);
+}
+.tile-strip .iso{flex:none;margin:-42px 0 -14px;filter:drop-shadow(6px 8px 0 rgba(0,0,0,.35))}
+.tile-strip .copy{display:flex;flex-direction:column;gap:4px}
+.tile-strip .copy b{
+  font-family:var(--display);font-size:23px;color:var(--brass);letter-spacing:.02em;line-height:1.15;
+}
+.tile-strip .copy span{
+  font-family:var(--body);font-weight:600;font-size:17px;color:#E4D6B8;line-height:1.25;
+}
+.tile-strip .copy span u{
+  text-decoration:none;color:var(--cream);padding-bottom:2px;
+  background:linear-gradient(var(--red),var(--red)) 0 100%/100% 3px no-repeat;
+}
+
+.deco-train{position:absolute;right:26px;top:92px;width:196px;height:auto;pointer-events:none}
+
+/* ---------- SCREEN 3 : end of round ---------- */
+.crash-head{display:flex;align-items:flex-end;gap:20px}
+.crash-head .words{flex:1;min-width:0}
+.smash{
+  font-family:var(--display);font-size:74px;line-height:.92;color:var(--red);
+  letter-spacing:.01em;text-shadow:6px 6px 0 var(--ink);
+}
+.sub{
+  margin-top:12px;font-family:var(--body);font-weight:600;font-size:19px;color:var(--wood-dark);
+  max-width:560px;line-height:1.25;
+}
+.wreck{flex:none;margin-bottom:2px}
+
+.stats{display:flex;gap:12px}
+.stub{
+  flex:1;position:relative;background:var(--cream);border:4px solid var(--ink);
+  border-radius:14px;padding:10px 12px 11px 20px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;
+}
+.stub::before{
+  content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;
+  background:repeating-linear-gradient(180deg,var(--ink) 0 4px,transparent 4px 9px);
+  opacity:.55;
+}
+.stub i{
+  display:block;font-family:var(--util);font-style:normal;font-weight:700;
+  font-size:10px;letter-spacing:.16em;color:var(--wood-dark);
+}
+.stub b{display:block;font-family:var(--display);font-size:32px;line-height:1.05;color:var(--ink);margin-top:3px}
+.stub b small{font-family:var(--body);font-weight:700;font-size:15px;letter-spacing:.02em}
+.stub.gold b{color:var(--brass);-webkit-text-stroke:2px var(--ink)}
+.stub.purse b{color:var(--green)}
+
+.ready{display:flex;gap:7px;margin-top:6px;align-items:center}
+.ready i{width:15px;height:15px;border-radius:50%;border:3px solid rgba(248,236,210,.5);background:transparent}
+.ready i.on{background:var(--brass);border-color:var(--brass)}
+
+@media (prefers-reduced-motion: no-preference){
+  .chip.open{animation:breathe 2.6s ease-in-out infinite}
+  .chip.open:nth-of-type(odd){animation-delay:.5s}
+  @keyframes breathe{0%,100%{opacity:.72}50%{opacity:1}}
+}
+
+/* ---------- footer: palette + type ---------- */
+.system{
+  max-width:1420px;margin:66px auto 0;
+  display:flex;flex-wrap:wrap;gap:28px 44px;align-items:flex-start;
+  border-top:3px solid #3D3831;padding-top:22px;
+}
+.system h2{
+  font-family:var(--util);font-weight:700;font-size:11px;letter-spacing:.24em;
+  color:#8F877A;text-transform:uppercase;margin-bottom:12px;
+}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{width:104px}
+.sw .blk{height:44px;border:3px solid var(--ink);border-radius:10px;box-shadow:4px 4px 0 #131110}
+.sw p{font-family:var(--util);font-size:10px;line-height:1.5;margin-top:8px;color:#B5AA98}
+.sw p b{display:block;color:var(--cream);letter-spacing:.1em;font-size:10px}
+.type-list{font-family:var(--util);font-size:11px;line-height:2;color:#B5AA98}
+.type-list b{color:var(--cream);letter-spacing:.06em}
+.type-list span{color:#8F877A}
+</style>
+</head>
+<body>
+
+<!-- icon library -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="hat-cap" viewBox="0 0 24 24">
+    <g fill="currentColor"><rect x="5" y="7" width="14" height="7" rx="2"/><rect x="2" y="13" width="20" height="4" rx="1.6"/><rect x="5" y="11" width="14" height="3"/></g>
+  </symbol>
+  <symbol id="hat-hard" viewBox="0 0 24 24">
+    <g fill="currentColor"><path d="M6 14a6 6 0 0 1 12 0z"/><rect x="2" y="14" width="20" height="4" rx="1.6"/><rect x="10.6" y="5" width="2.8" height="6" rx="1"/></g>
+  </symbol>
+  <symbol id="hat-top" viewBox="0 0 24 24">
+    <g fill="currentColor"><rect x="7" y="3" width="10" height="12" rx="1.6"/><rect x="2" y="14" width="20" height="4" rx="1.6"/></g>
+  </symbol>
+  <symbol id="hat-beanie" viewBox="0 0 24 24">
+    <g fill="currentColor"><path d="M5 14a7 7 0 0 1 14 0z"/><rect x="3.5" y="14" width="17" height="4.2" rx="2"/><rect x="10.4" y="2.4" width="3.2" height="3.2" rx="1.2"/></g>
+  </symbol>
+  <symbol id="hat-crown" viewBox="0 0 24 24">
+    <g fill="currentColor"><path d="M3 7l4 4 5-6 5 6 4-4v9H3z"/><rect x="3" y="17" width="18" height="3.4" rx="1.2"/></g>
+  </symbol>
+
+  <symbol id="ico-log" viewBox="0 0 24 24">
+    <g><rect x="1.6" y="6" width="20.8" height="12" rx="4" fill="#B8752F" stroke="#1E1712" stroke-width="2.2"/>
+    <ellipse cx="6" cy="12" rx="3" ry="4.6" fill="#E0AC6B" stroke="#1E1712" stroke-width="2.2"/>
+    <ellipse cx="6" cy="12" rx="1.1" ry="1.8" fill="none" stroke="#1E1712" stroke-width="1.6"/></g>
+  </symbol>
+</svg>
+
+<header class="page-head">
+  <h1>Track Crew</h1>
+  <span class="v">Variant A · Wooden Toybox</span>
+  <span class="n">screen studies 01–03 · laptop→TV + phone pads</span>
+</header>
+
+<main class="stage">
+
+  <!-- ================= SCREEN 1 : PHONE ================= -->
+  <section class="unit u-phone">
+    <div class="phone">
+      <div class="phone-screen">
+
+        <div class="ph-top">
+          <div class="ident">
+            <span class="puck"><svg><use href="#hat-cap"/></svg></span>
+            <span>JUREK</span>
+          </div>
+
+          <div class="holding">
+            <span class="slot"><svg><use href="#ico-log"/></svg></span>
+            <span class="txt"><b>WOOD</b><i>CARRYING</i></span>
+            <span class="count">×7</span>
+          </div>
+        </div>
+
+        <div class="ph-mid" aria-hidden="true">
+          <svg viewBox="0 0 300 120" fill="none" stroke="#1E1712" stroke-width="9" stroke-linecap="round">
+            <path d="M8 34h284M8 86h284"/>
+            <path d="M40 22v76M100 22v76M160 22v76M220 22v76M280 22v76"/>
+          </svg>
+        </div>
+
+        <div class="ph-pad">
+          <div class="stick"><span class="ring"></span><span class="knob"></span></div>
+          <div class="act">
+            <span class="tag">LOG IN REACH</span>
+            <div class="btn-act"><span>PICK<br>UP</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <p class="cap"><b>01 — PHONE CONTROLLER</b><br>
+      414×896, Safari iOS. Thumb stick left, one action right. The big button relabels itself to
+      PLACE RAIL / DROP / SWAP depending on what the character is standing next to. Top-left chip is
+      colour + hat only — no map, no score, no menu.</p>
+  </section>
+
+  <!-- ================= SCREEN 2 : TV JOIN ================= -->
+  <section class="unit u-tv">
+    <div class="tv-set">
+      <div class="tv">
+        <div class="tv-screen">
+
+          <div class="eyebrow"><span class="dot"></span>Crew call · 1–5 players</div>
+
+          <svg class="deco-train" viewBox="0 0 240 156" aria-hidden="true">
+            <g stroke="#1E1712" stroke-width="5" stroke-linejoin="round">
+              <circle cx="168" cy="30" r="13" fill="#EBD9B4"/>
+              <circle cx="196" cy="14" r="9" fill="#EBD9B4"/>
+              <rect x="150" y="46" width="24" height="30" rx="5" fill="#2F6B3C"/>
+              <rect x="40" y="74" width="150" height="46" rx="10" fill="#D33F30"/>
+              <rect x="46" y="42" width="56" height="34" rx="8" fill="#F8ECD2"/>
+              <rect x="58" y="52" width="26" height="18" rx="4" fill="#8A5220"/>
+              <rect x="176" y="86" width="16" height="18" rx="4" fill="#F2B233"/>
+              <circle cx="72" cy="122" r="17" fill="#1E1712"/>
+              <circle cx="128" cy="122" r="17" fill="#1E1712"/>
+              <circle cx="72" cy="122" r="6" fill="#F2B233" stroke="none"/>
+              <circle cx="128" cy="122" r="6" fill="#F2B233" stroke="none"/>
+              <rect x="0" y="136" width="240" height="9" rx="3" fill="#8A5220"/>
+            </g>
+          </svg>
+
+          <div class="join-main">
+            <div class="qr-card">
+              <svg id="qr" viewBox="0 0 25 25" shape-rendering="crispEdges" role="img" aria-label="QR code placeholder"></svg>
+              <span class="lbl">SCAN ME</span>
+            </div>
+
+            <div class="join-right">
+              <span class="k-lbl">ROOM CODE</span>
+              <div class="code">BQZK</div>
+              <span class="url"><em>or type</em> trackcrew.io</span>
+            </div>
+          </div>
+
+          <div class="crew">
+            <span class="crew-lbl">CREW 3/5</span>
+            <span class="chip c-green"><span class="puck"><svg><use href="#hat-cap"/></svg></span><b>JUREK</b></span>
+            <span class="chip c-red"><span class="puck"><svg><use href="#hat-beanie"/></svg></span><b>MILA</b></span>
+            <span class="chip c-brass"><span class="puck"><svg><use href="#hat-hard"/></svg></span><b>ANTEK</b></span>
+            <span class="chip open"><span class="puck"><svg><use href="#hat-top"/></svg></span><b>OPEN</b></span>
+            <span class="chip open"><span class="puck"><svg><use href="#hat-crown"/></svg></span><b>OPEN</b></span>
+          </div>
+
+          <div class="tile-strip">
+            <svg class="iso" width="188" height="132" viewBox="0 0 200 140" aria-hidden="true">
+              <g stroke="#1E1712" stroke-width="5" stroke-linejoin="round">
+                <polygon points="10,72 100,117 100,137 10,92" fill="#1F4A2A"/>
+                <polygon points="190,72 100,117 100,137 190,92" fill="#173A20"/>
+                <polygon points="100,27 190,72 100,117 10,72" fill="#2F6B3C"/>
+                <polygon points="100,45 163,72 100,99 37,72" fill="none" stroke="#F8ECD2" stroke-width="4" stroke-dasharray="8 7"/>
+              </g>
+              <!-- two crew standing on it -->
+              <g stroke="#1E1712" stroke-width="4" stroke-linejoin="round">
+                <rect x="66" y="52" width="20" height="24" rx="4" fill="#D33F30"/>
+                <rect x="68" y="34" width="16" height="16" rx="4" fill="#F8ECD2"/>
+                <rect x="63" y="28" width="26" height="7" rx="3" fill="#1E1712"/>
+                <rect x="112" y="60" width="20" height="24" rx="4" fill="#F2B233"/>
+                <rect x="114" y="42" width="16" height="16" rx="4" fill="#F8ECD2"/>
+                <rect x="109" y="36" width="26" height="7" rx="3" fill="#1E1712"/>
+              </g>
+            </svg>
+            <span class="copy">
+              <b>NO BUTTONS ON THIS RIDE.</b>
+              <span>Walk your crew onto the <u>START</u> tile. When every pair of boots is on the wood, the train rolls.</span>
+            </span>
+          </div>
+
+        </div>
+      </div>
+      <div class="tv-legs"><span></span><span></span></div>
+    </div>
+    <p class="cap"><b>02 — TV JOIN SCREEN</b><br>
+      Laptop output on the living-room TV. Code and QR sized for 3 m viewing; empty slots keep
+      breathing until someone fills them. Confirmation happens in the 3D lobby, not on a button.</p>
+  </section>
+
+  <!-- ================= SCREEN 3 : END OF ROUND ================= -->
+  <section class="unit u-tv">
+    <div class="tv-set">
+      <div class="tv">
+        <div class="tv-screen">
+
+          <div class="eyebrow"><span class="dot"></span>Run over · round 6 · derailed</div>
+
+          <div class="crash-head">
+            <div class="words">
+              <div class="smash">OUT OF<br>TRACK.</div>
+              <p class="sub">Nobody laid the last rail. The 8:15 is now six wagons of very expensive firewood.</p>
+            </div>
+            <svg class="wreck" width="212" height="148" viewBox="0 0 212 148" aria-hidden="true">
+              <g stroke="#1E1712" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+                <!-- the rail simply stops -->
+                <rect x="2" y="110" width="104" height="10" rx="3" fill="#8A5220"/>
+                <rect x="12" y="120" width="12" height="15" rx="3" fill="#B8752F"/>
+                <rect x="52" y="120" width="12" height="15" rx="3" fill="#B8752F"/>
+                <rect x="90" y="120" width="12" height="15" rx="3" fill="#B8752F"/>
+                <!-- tumbling debris -->
+                <rect x="108" y="86" width="15" height="15" rx="3" fill="#B8752F"/>
+                <rect x="126" y="118" width="12" height="12" rx="3" fill="#8A5220"/>
+                <!-- loco, nose in the dirt -->
+                <g transform="rotate(32 148 78)">
+                  <rect x="100" y="58" width="82" height="44" rx="10" fill="#D33F30"/>
+                  <rect x="106" y="28" width="36" height="32" rx="8" fill="#F8ECD2"/>
+                  <rect x="115" y="37" width="18" height="14" rx="3" fill="#8A5220"/>
+                  <rect x="154" y="30" width="21" height="30" rx="5" fill="#2F6B3C"/>
+                  <circle cx="122" cy="106" r="13" fill="#1E1712"/>
+                  <circle cx="164" cy="106" r="13" fill="#1E1712"/>
+                </g>
+                <!-- sparks -->
+                <path d="M196 62 l12 -10M188 34 l4 -14M166 20 l-6 -12"/>
+              </g>
+            </svg>
+          </div>
+
+          <div class="stats">
+            <span class="stub"><i>ROUNDS SURVIVED</i><b>6</b></span>
+            <span class="stub"><i>TOTAL DISTANCE</i><b>1,284<small> m</small></b></span>
+            <span class="stub gold"><i>GOLD THIS ROUND</i><b>+340</b></span>
+            <span class="stub purse"><i>SHARED PURSE</i><b>1,155</b></span>
+          </div>
+
+          <div class="tile-strip">
+            <svg class="iso" width="188" height="132" viewBox="0 0 200 140" aria-hidden="true">
+              <g stroke="#1E1712" stroke-width="5" stroke-linejoin="round">
+                <polygon points="10,72 100,117 100,137 10,92" fill="#A97C22"/>
+                <polygon points="190,72 100,117 100,137 190,92" fill="#8A6216"/>
+                <polygon points="100,27 190,72 100,117 10,72" fill="#F2B233"/>
+                <polygon points="100,45 163,72 100,99 37,72" fill="none" stroke="#1E1712" stroke-width="4" stroke-dasharray="8 7"/>
+              </g>
+              <g stroke="#1E1712" stroke-width="4" stroke-linejoin="round">
+                <rect x="64" y="50" width="20" height="24" rx="4" fill="#2F6B3C"/>
+                <rect x="66" y="32" width="16" height="16" rx="4" fill="#F8ECD2"/>
+                <rect x="61" y="26" width="26" height="7" rx="3" fill="#1E1712"/>
+                <rect x="112" y="58" width="20" height="24" rx="4" fill="#D33F30"/>
+                <rect x="114" y="40" width="16" height="16" rx="4" fill="#F8ECD2"/>
+                <rect x="109" y="34" width="26" height="7" rx="3" fill="#1E1712"/>
+                <!-- missing third crew: ghost outline -->
+                <rect x="150" y="66" width="20" height="24" rx="4" fill="none" stroke="#F8ECD2" stroke-dasharray="7 6"/>
+                <rect x="152" y="48" width="16" height="16" rx="4" fill="none" stroke="#F8ECD2" stroke-dasharray="7 6"/>
+              </g>
+            </svg>
+            <span class="copy">
+              <b>RUN IT BACK?</b>
+              <span>Everyone stand on the <u>RETRY</u> tile. Waiting on Antek.</span>
+              <span class="ready"><i class="on"></i><i class="on"></i><i></i></span>
+            </span>
+          </div>
+
+        </div>
+      </div>
+      <div class="tv-legs"><span></span><span></span></div>
+    </div>
+    <p class="cap"><b>03 — END OF ROUND</b><br>
+      Failure keeps the toy-box tone: stats read like ticket stubs, gold carries into the shared purse.
+      Same no-button rule — boots on the RETRY tile, and the dots fill as crew arrive.</p>
+  </section>
+
+</main>
+
+<footer class="system">
+  <div>
+    <h2>Palette</h2>
+    <div class="swatches">
+      <div class="sw"><div class="blk" style="background:#F8ECD2"></div><p><b>CREAM</b>#F8ECD2</p></div>
+      <div class="sw"><div class="blk" style="background:#EBD9B4"></div><p><b>CREAM DEEP</b>#EBD9B4</p></div>
+      <div class="sw"><div class="blk" style="background:#B8752F"></div><p><b>WOOD</b>#B8752F</p></div>
+      <div class="sw"><div class="blk" style="background:#8A5220"></div><p><b>WOOD DARK</b>#8A5220</p></div>
+      <div class="sw"><div class="blk" style="background:#2F6B3C"></div><p><b>FOREST</b>#2F6B3C</p></div>
+      <div class="sw"><div class="blk" style="background:#D33F30"></div><p><b>SIGNAL RED</b>#D33F30</p></div>
+      <div class="sw"><div class="blk" style="background:#F2B233"></div><p><b>BRASS</b>#F2B233</p></div>
+      <div class="sw"><div class="blk" style="background:#1E1712"></div><p><b>INK</b>#1E1712</p></div>
+      <div class="sw"><div class="blk" style="background:#262320"></div><p><b>PAGE</b>#262320</p></div>
+    </div>
+  </div>
+  <div>
+    <h2>Type</h2>
+    <p class="type-list">
+      <b>Bungee</b> <span>— display: room code, headlines, button faces</span><br>
+      <b>Baloo 2</b> <span>— body: copy, chips, prompts (500–800)</span><br>
+      <b>Space Mono</b> <span>— utility: labels, stat stubs, captions</span><br>
+      <span>fallbacks: Arial Black / Trebuchet MS / Menlo</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+// fake QR placeholder — deterministic, no network, no library
+(function(){
+  var svg = document.getElementById('qr');
+  if(!svg) return;
+  var N = 25, g = [], x, y;
+  for(y=0;y<N;y++){ g.push(new Array(N).fill(0)); }
+  var s = 20260724;
+  function rnd(){ s = (s * 1103515245 + 12345) % 2147483648; return s / 2147483648; }
+  for(y=0;y<N;y++){ for(x=0;x<N;x++){ g[y][x] = rnd() > 0.5 ? 1 : 0; } }
+  function block(ox, oy, size){
+    for(var j=-1;j<=size;j++){ for(var i=-1;i<=size;i++){
+      var px = ox+i, py = oy+j;
+      if(px<0||py<0||px>=N||py>=N) continue;
+      var onEdge = i>=0 && j>=0 && i<size && j<size && (i===0||j===0||i===size-1||j===size-1);
+      var core = i>=2 && j>=2 && i<=size-3 && j<=size-3;
+      g[py][px] = (onEdge || core) ? 1 : 0;
+    }}
+  }
+  block(0,0,7); block(N-7,0,7); block(0,N-7,7);
+  block(N-9,N-9,5);
+  for(var i=8;i<N-8;i++){ g[6][i] = i%2===0?1:0; g[i][6] = i%2===0?1:0; }
+  var out = '';
+  for(y=0;y<N;y++){ for(x=0;x<N;x++){ if(g[y][x]) out += '<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#1E1712"/>'; } }
+  svg.innerHTML = out;
+})();
+</script>
+
+</body>
+</html>
